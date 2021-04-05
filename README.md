@@ -1,6 +1,8 @@
 # wtf: Wasserstein Tensor Factorisation
 ## Non-negative matrix and tensor factorisations with a smoothed Wasserstein loss 
 
+![pooh bear meme](images/wtf.jpg)
+
 This repository contains a basic implementation of the method described in the article "Non-negative matrix and tensor factorisations with a smoothed Wasserstein loss".
 
 ## Requirements
