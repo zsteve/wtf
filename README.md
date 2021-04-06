@@ -11,6 +11,14 @@ This repository contains a basic implementation of the method described in the a
 
 ## Instructions
  - Clone this repo: `git clone https://github.com/zsteve/wtf.git`
+ - Import the `wtf` module using
+   ```python
+   import sys
+   sys.path.insert(0, "/content/wtf/src")
+   import wtf
+   ```
+ - ???
+ - Profit
 
 ## Citing 
  - If you find this work relevant to your research project, please cite the [preprint](https://arxiv.org/abs/2104.01708)
