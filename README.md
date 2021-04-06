@@ -1,5 +1,6 @@
 # wtf: Wasserstein Tensor Factorisation
-## Non-negative matrix and tensor factorisations with a smoothed Wasserstein loss 
+
+Non-negative matrix and tensor factorisations with a smoothed Wasserstein loss 
 
 ![pooh bear meme](images/wtf.jpg)
 
