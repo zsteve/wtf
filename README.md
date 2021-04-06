@@ -8,6 +8,8 @@ This repository contains a basic implementation of the method described in the a
 
 ## Requirements
  - PyTorch
+ - [Tensorly](http://tensorly.org)
+ - [PythonOT](https://pythonot.github.io/)
  - CUDA-compatible GPU (e.g. use [Colab](http://colab.research.google.com/)) for efficient autodiff
 
 ## Instructions
