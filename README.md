@@ -13,8 +13,8 @@ This repository contains a basic implementation of the method described in the a
  - Clone this repo: `git clone https://github.com/zsteve/wtf.git`
 
 ## Citing 
- - If you find this work relevant to your research project, please cite the preprint
+ - If you find this work relevant to your research project, please cite the [preprint](https://arxiv.org/abs/2104.01708)
 
 ```
-Zhang, S. Non-negative matrix and tensor factorisations with a smoothed Wasserstein loss 
+Zhang, S. Non-negative matrix and tensor factorisations with a smoothed Wasserstein loss, arXiv preprint arXiv:2104.01708, 2021
 ```
