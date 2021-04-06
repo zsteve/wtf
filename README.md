@@ -21,6 +21,12 @@ This repository contains a basic implementation of the method described in the a
  - ???
  - Profit
 
+## Example
+
+A notebook for Figures 3, 4, 5 is located in the `examples/` directory.
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/zsteve/wtf/blob/main/examples/example.ipynb)
+
 ## Citing 
  - If you find this work relevant to your research project, please cite the [preprint](https://arxiv.org/abs/2104.01708)
 
