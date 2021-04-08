@@ -39,8 +39,8 @@ class OTModel(torch.nn.Module):
         pass
     def E(self, p):
         return (xlogy(p, p) - p).sum()
-    def E_star(self, p):
-        return torch.logsumexp(p, 0)
+    def E_star_bal(self, p):
+        return torch.logsumexp(p, 0).sum()
     def E_star_unbal(self, p):
         return p.exp().sum()
     def KL(self, a, b):
@@ -101,7 +101,7 @@ class FactorsModel(OTModel):
         return tl.unfold(tl.tenalg.multi_mode_dot(self.S, [self.A[j] for j in modes], modes = modes), i)
     def set_U(self, U):
         self.U = torch.nn.ParameterList([torch.nn.Parameter(Variable(U[i], requires_grad = True)) for i in range(len(self.X_orig.shape))])
-    def __init__(self, X, k, C, S, A, rho, eps, lamda, optim_modes, ot_mode = "fiber", C_full = None, U_init = None, unbal = True, **kwargs):
+    def __init__(self, X, k, C, S, A, rho, eps, lamda, optim_modes, ot_mode = "fiber", C_full = None, U_init = None, unbal = True, norm = None, **kwargs):
         super(FactorsModel, self).__init__(**kwargs)
         self.X = [tl.unfold(X, i) for i in range(len(X.shape))] # all unfoldings
         self.alpha = [(self.X[i].sum(0) > 0)*1.0 for i in range(len(X.shape))]
@@ -109,6 +109,7 @@ class FactorsModel(OTModel):
         self.k = k # mode
         self.C = C
         self.unbal = unbal
+        self.norm = norm
         if C is not None:
             self.K = [(-C[k]/eps[k]).exp() for k in range(len(C))] # Gibbs kernels for each mode
         if C_full is not None:
@@ -137,12 +138,21 @@ class FactorsModel(OTModel):
             return torch.sum(torch.stack([self.H_star_unbal(self.U[i], self.X[i], self.eps[i], self.lamda[i], self.K[i], alpha = self.alpha[i]) for i in self.optim_modes])) + \
                   self.rho[self.k]*self.E_star_unbal((-1/self.rho[self.k]) * (self.U[self.k] @ self.S_A.T * float(self.k in self.optim_modes) + sumstack([self.get_xi(j) for j in self.optim_modes if j != self.k])))
         elif self.ot_mode == "slice":
-            if self.unbal:
-                return self.H_star_unbal(self.U[0].T, self.X[0].T, self.eps[0], self.lamda[0], self.K_full) +  \
-                      self.rho[self.k]*self.E_star_unbal((-1/self.rho[self.k]) * (self.U[self.k] @ self.S_A.T * float(self.k in self.optim_modes) + sumstack([self.get_xi(j) for j in self.optim_modes if j != self.k])))
-            else:
-                return self.H_star_bal(self.U[0].T, self.X[0].T, self.eps[0], self.K_full) +  \
-                      self.rho[self.k]*self.E_star_unbal((-1/self.rho[self.k]) * (self.U[self.k] @ self.S_A.T * float(self.k in self.optim_modes) + sumstack([self.get_xi(j) for j in self.optim_modes if j != self.k])))
+            ot_term = self.H_star_unbal(self.U[0].T, self.X[0].T, self.eps[0], self.lamda[0], self.K_full) if self.unbal else self.H_star_bal(self.U[0].T, self.X[0].T, self.eps[0], self.K_full)
+            Z = (-1/self.rho[self.k]) * (self.U[self.k] @ self.S_A.T * float(self.k in self.optim_modes) + sumstack([self.get_xi(j) for j in self.optim_modes if j != self.k]))
+            if self.norm is None:
+                ent_term = self.rho[self.k]*self.E_star_unbal(Z)
+            elif self.norm == "col":
+                ent_term = self.rho[self.k]*self.E_star_bal(Z)
+            elif self.norm == "row":
+                ent_term = self.rho[self.k]*self.E_star_bal(Z.T)
+            return ot_term + ent_term
+            # if self.unbal:
+            #     return self.H_star_unbal(self.U[0].T, self.X[0].T, self.eps[0], self.lamda[0], self.K_full) +  \
+            #           self.rho[self.k]*self.E_star_unbal((-1/self.rho[self.k]) * (self.U[self.k] @ self.S_A.T * float(self.k in self.optim_modes) + sumstack([self.get_xi(j) for j in self.optim_modes if j != self.k])))
+            # else:
+            #     return self.H_star_bal(self.U[0].T, self.X[0].T, self.eps[0], self.K_full) +  \
+            #           self.rho[self.k]*self.E_star_bal((-1/self.rho[self.k]) * (self.U[self.k] @ self.S_A.T * float(self.k in self.optim_modes) + sumstack([self.get_xi(j) for j in self.optim_modes if j != self.k])))
     def primal_obj(self, terms = False):
         # not implemented 
         return 0
@@ -153,7 +163,15 @@ class FactorsModel(OTModel):
         l = [self.get_xi(j) for j in self.optim_modes if j != self.k]
         if len(l) > 0:
             x += torch.stack(l).sum(0)
-        return torch.exp((-1/self.rho[self.k])*x)
+        Z = (-1/self.rho[self.k])*x
+        if self.norm is None:
+            return torch.exp((-1/self.rho[self.k])*x)
+        elif self.norm == "col":
+            a = torch.exp((-1/self.rho[self.k])*x)
+            return a/a.sum(0).reshape(1, -1)
+        elif self.norm == "row":
+            a = torch.exp((-1/self.rho[self.k])*x)
+            return (a.T/a.sum(1)).T
 #
 class CoreModel(OTModel):
     def set_U(self, U):
@@ -190,7 +208,7 @@ class CoreModel(OTModel):
                   self.rho[-1]*self.E_star_unbal((-1/self.rho[-1]) * sumstack([self.get_omega(i) for i in self.optim_modes]))
         elif self.ot_mode == "slice":
             return self.H_star_unbal(self.U[0].T, self.X[0].T, self.eps[0], self.lamda[0], self.K_full) + \
-                  self.rho[-1]*self.E_star((-1/self.rho[-1]) * sumstack([self.get_omega(i) for i in self.optim_modes]))
+                  self.rho[-1]*self.E_star_bal((-1/self.rho[-1]) * sumstack([self.get_omega(i) for i in self.optim_modes]))
     def forward(self):
         return self.dual_obj()
     def compute_primal_variable(self):
