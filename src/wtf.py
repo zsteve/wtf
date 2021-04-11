@@ -30,44 +30,102 @@ def xy(x, y):
     out[y == 0] = 0
     return out
 
+def sumstack(l):
+    if len(l) > 0:
+        return torch.stack(l).sum(0)
+    else:
+        return 0
+
+
 normalise = lambda x: x/x.sum()
 
 class OTModel(torch.nn.Module):
+    '''
+    Base variational OT problem class. 
+    '''
     def __init__(self, device = None):
         super(OTModel, self).__init__()
         self.device = torch.device("cpu") if device is None else device
         pass
     def E(self, p):
+        '''
+        Entropy on positive measures, E(p) = <p, log(p)-1>
+        '''
         return (xlogy(p, p) - p).sum()
-    def E_star_bal(self, p):
+    def E_star_simplex(self, p):
+        '''
+        Legendre transform of E(p) subject to simplex constraint <p, 1> = 1 along axis 0.
+        '''
         return torch.logsumexp(p, 0).sum()
-    def E_star_unbal(self, p):
+    def E_star(self, p):
+        '''
+        Legendre transform of E(p) on positive measures.
+        '''
         return p.exp().sum()
-    def KL(self, a, b):
+    def genKL(self, a, b):
+        '''
+        Generalised KL-divergence on positive measures, KL(a, b) = <a, log(a/b)> - <a, 1> + <b, 1>
+        '''
         return (xlogy(a, a/b) - a + b).sum()
-    def KL2(self, a, b):
+    def KL(self, a, b):
+        '''
+        KL-divergence on positive measures, KL(a, b) = <a, log(a/b)-1>
+        '''
         return (xlogy(a, a/b) - a).sum()
-    def H_star_bal(self, G, P, eps, K):
-        X = G/eps
+    def OT_semidual_bal(self, U, P, eps, K):
+        '''
+        Dual of OT(P, Q) in its second argument, i.e. dual pairing is <Q, U>. 
+        Handles the case of batch OT, where columns of P are histograms on a common space.
+        '''
+        X = U/eps
         scale = X.max(0).values
         return eps*(-self.E(P) + torch.sum(P*(scale + torch.log(K @ torch.exp(X-scale)))))
+    def OT_semidual_bal_tensor(self, U, P, eps, K):
+        '''
+        Dual of OT(P, Q) in its second argument, i.e. dual pairing is <Q, U>. 
+        Handles the case of tensor OT, where P, U are d-way tensors, and K is a list of d Gibbs kernels. 
+        '''
+        X = U/eps
+        scale = X.max()
+        return eps*(-self.E(P) + torch.sum(P*(scale + torch.log(tl.tenalg.multi_mode_dot(torch.exp(X-scale), K)))))
     def get_ufrac(self, u, lamda, eps, log = False):
+        '''
+        Compute f = (lambda/(lambda-u))^(lambda/epsilon) for unbalanced OT. 
+        If log == True, result is returned in log-domain.
+        '''
         if log:
             return (lamda/eps)*torch.log(lamda/(lamda - u))
         else:
             return ((lamda/eps)*torch.log(lamda/(lamda - u))).exp()
-    def H_star_unbal(self, U, P, eps, lamda, K, alpha = None):
+    def OT_semidual_unbal_tensor(self, U, P, eps, lamda, K):
+        '''
+        Dual of OTU(P, Q) in its second argument, i.e. dual pairing is <Q, U>. 
+        Handles the case of batch OT, where columns of P are histograms on a common space.
+        '''
+        F = self.get_ufrac(U, lamda, eps, log = True)
+        scale = F.max()
+        return -eps*xlogy(P, P).sum() + eps*xlogy(P, tl.tenalg.multi_mode_dot((F - scale).exp(), K)).sum() + eps*(P*(scale + 1)).sum()
+    def OT_semidual_unbal(self, U, P, eps, lamda, K, alpha = None):
+        '''
+        Dual of OTU(P, Q) in its second argument, i.e. dual pairing is <Q, U>. 
+        Handles the case of tensor OT, where P, U are d-way tensors, and K is a list of d Gibbs kernels. 
+        '''
         F = self.get_ufrac(U, lamda, eps, log = True)
         scale = F.max(0).values
         if alpha is None:
             return -eps*xlogy(P, P).sum() + eps*xlogy(P, K @ (F - scale).exp()).sum() + eps*(P*(scale + 1)).sum()
         else:
             return -eps*xlogy(P, P).sum(0).dot(alpha) + eps*xlogy(P, K @ (F - scale).exp()).sum(0).dot(alpha) + eps*(P*(scale + 1)).sum(0).dot(alpha)
-    def H_star_unbal_stab(self, U, P, eps, lamda, C):
-        F = self.get_ufrac(U, lamda, eps, log = True)
-        return -eps*xlogy(P, P).sum() + eps*P.sum() + \
-                eps*xy(P, torch.logsumexp((-C/eps).reshape(C.shape[0], C.shape[0], 1) + F.reshape(1, F.shape[0], F.shape[1]), dim = 1)).sum()
-    def H_unbal(self, U, P, eps, lamda, K):
+    # Commented out for now because this is extremely slow
+    # def OT_semidual_unbal_stab(self, U, P, eps, lamda, C):
+    #     F = self.get_ufrac(U, lamda, eps, log = True)
+    #     return -eps*xlogy(P, P).sum() + eps*P.sum() + \
+    #             eps*xy(P, torch.logsumexp((-C/eps).reshape(C.shape[0], C.shape[0], 1) + F.reshape(1, F.shape[0], F.shape[1]), dim = 1)).sum()
+    def OT_unbal(self, U, P, eps, lamda, K):
+        '''
+        Compute primal OTU(P, Q) from dual potential U at optimality. 
+        Aggregates along columns.
+        '''
         out = 0
         for i in range(U.shape[1]):
             gamma = self.get_gamma_unbal(U[:, i], P[:, i], eps, lamda, K)
@@ -88,38 +146,40 @@ class OTModel(torch.nn.Module):
                                           K,
                                           self.get_ufrac(u, lamda, eps))
 
-def sumstack(l):
-    if len(l) > 0:
-        return torch.stack(l).sum(0)
-    else:
-        return 0
-
 class FactorsModel(OTModel):
-    def get_SA(self, i):
-        modes = np.arange(len(self.A))
-        modes = modes[modes != i]
-        return tl.unfold(tl.tenalg.multi_mode_dot(self.S, [self.A[j] for j in modes], modes = modes), i)
-    def set_U(self, U):
-        self.U = torch.nn.ParameterList([torch.nn.Parameter(Variable(U[i], requires_grad = True)) for i in range(len(self.X_orig.shape))])
-    def __init__(self, X, k, C, S, A, rho, eps, lamda, optim_modes, ot_mode = "fiber", C_full = None, U_init = None, unbal = True, norm = None, **kwargs):
+    '''
+    Subclass for factor matrix subproblem
+    
+    X: data tensor
+    k: index of factor matrix we want 
+    C: list of cost matrices (one for each mode)
+    S: core tensor (can be constant)
+    A: list of factor matrices
+    rho: factor matrix entropy weights
+    eps: OT regularisation parameter
+    lamda: unbalanced OT parameter (only relevant if unbal = True)
+    optim_modes: modes along which to compute OT
+    ot_mode: "fiber", "slice", or "full"
+    U_init: initial dual potential to use (if None, U initialised as 0)
+    unbal: whether to use unbalanced transport
+    norm: None, "row", "col" or "full". How to (simplex)-normalise the factor matrix.
+    '''
+    def __init__(self, X, k, C, S, A, rho, eps, lamda, optim_modes, ot_mode = "fiber", U_init = None, unbal = True, norm = None, **kwargs):
         super(FactorsModel, self).__init__(**kwargs)
         self.X = [tl.unfold(X, i) for i in range(len(X.shape))] # all unfoldings
-        self.alpha = [(self.X[i].sum(0) > 0)*1.0 for i in range(len(X.shape))]
         self.X_orig = X # folded tensor
-        self.k = k # mode
+        self.k = k 
         self.C = C
         self.unbal = unbal
         self.norm = norm
-        if C is not None:
-            self.K = [(-C[k]/eps[k]).exp() for k in range(len(C))] # Gibbs kernels for each mode
-        if C_full is not None:
-            self.C_full = C_full
-            self.K_full = (-C_full/eps[0]).exp()
+        self.K = [(-C[k]/eps[k]).exp() for k in range(len(C))] # Gibbs kernels for each mode
         self.eps = eps
         self.rho = rho
         self.lamda = lamda
         self.A = A
         self.optim_modes = optim_modes
+        if ot_mode == "fiber":
+            self.alpha = [(self.X[i].sum(0) > 0)*1.0 for i in range(len(X.shape))]
         if U_init is None:
             U = [torch.zeros(self.X[i].shape).to(self.device) for i in range(len(X.shape))]
         else:
@@ -133,93 +193,132 @@ class FactorsModel(OTModel):
         modes2 = [j for j in range(len(self.A)) if j not in (i, )]
         s = tl.tenalg.multi_mode_dot(self.S, [self.A[j] for j in modes2], modes = modes2).shape
         return tl.unfold(tl.fold(self.A[i].T @ self.U[i], i, s), self.k) @ tl.unfold(tl.tenalg.multi_mode_dot(self.S, [self.A[j] for j in modes], modes), self.k).T
+    def get_SA(self, i):
+        modes = np.arange(len(self.A))
+        modes = modes[modes != i]
+        return tl.unfold(tl.tenalg.multi_mode_dot(self.S, [self.A[j] for j in modes], modes = modes), i)
+    def set_U(self, U):
+        self.U = torch.nn.ParameterList([torch.nn.Parameter(Variable(U[i], requires_grad = True)) for i in range(len(self.X_orig.shape))])
     def dual_obj(self):
+        '''
+        Compute dual objective
+        '''
+        # will need this later
+        Z = (-1/self.rho[self.k]) * (self.U[self.k] @ self.S_A.T * float(self.k in self.optim_modes) + sumstack([self.get_xi(j) for j in self.optim_modes if j != self.k]))
+        if self.norm is None:
+            ent_term = self.rho[self.k]*self.E_star(Z)
+        elif self.norm == "col":
+            ent_term = self.rho[self.k]*self.E_star_simplex(Z)
+        elif self.norm == "row":
+            ent_term = self.rho[self.k]*self.E_star_simplex(Z.T)
+        elif self.norm == "full":
+            ent_term = self.rho[self.k]*self.E_star_simplex(Z.reshape(-1))
+        # case: OT along fibers. need to use the alpha mask to drop zero fibers.
         if self.ot_mode == "fiber":
-            return torch.sum(torch.stack([self.H_star_unbal(self.U[i], self.X[i], self.eps[i], self.lamda[i], self.K[i], alpha = self.alpha[i]) for i in self.optim_modes])) + \
-                  self.rho[self.k]*self.E_star_unbal((-1/self.rho[self.k]) * (self.U[self.k] @ self.S_A.T * float(self.k in self.optim_modes) + sumstack([self.get_xi(j) for j in self.optim_modes if j != self.k])))
+            ot_term = sumstack([self.OT_semidual_unbal(self.U[i], self.X[i], self.eps[i], self.lamda[i], self.K[i], alpha = self.alpha[i]) for i in self.optim_modes])
+        # case: OT along slices. we need the rows of X_(0) to be the slices, and use C[0] as the cost. 
         elif self.ot_mode == "slice":
-            ot_term = self.H_star_unbal(self.U[0].T, self.X[0].T, self.eps[0], self.lamda[0], self.K_full) if self.unbal else self.H_star_bal(self.U[0].T, self.X[0].T, self.eps[0], self.K_full)
-            Z = (-1/self.rho[self.k]) * (self.U[self.k] @ self.S_A.T * float(self.k in self.optim_modes) + sumstack([self.get_xi(j) for j in self.optim_modes if j != self.k]))
-            if self.norm is None:
-                ent_term = self.rho[self.k]*self.E_star_unbal(Z)
-            elif self.norm == "col":
-                ent_term = self.rho[self.k]*self.E_star_bal(Z)
-            elif self.norm == "row":
-                ent_term = self.rho[self.k]*self.E_star_bal(Z.T)
-            return ot_term + ent_term
-            # if self.unbal:
-            #     return self.H_star_unbal(self.U[0].T, self.X[0].T, self.eps[0], self.lamda[0], self.K_full) +  \
-            #           self.rho[self.k]*self.E_star_unbal((-1/self.rho[self.k]) * (self.U[self.k] @ self.S_A.T * float(self.k in self.optim_modes) + sumstack([self.get_xi(j) for j in self.optim_modes if j != self.k])))
-            # else:
-            #     return self.H_star_bal(self.U[0].T, self.X[0].T, self.eps[0], self.K_full) +  \
-            #           self.rho[self.k]*self.E_star_bal((-1/self.rho[self.k]) * (self.U[self.k] @ self.S_A.T * float(self.k in self.optim_modes) + sumstack([self.get_xi(j) for j in self.optim_modes if j != self.k])))
+            ot_term = self.OT_semidual_unbal(self.U[0].T, self.X[0].T, self.eps[0], self.lamda[0], self.K[0]) \
+                    if self.unbal else self.OT_semidual_bal(self.U[0].T, self.X[0].T, self.eps[0], self.K[0])
+        elif self.ot_mode == "full":
+            ot_term = self.OT_semidual_unbal_tensor(tl.fold(self.U[0], 0, self.X_orig.shape), self.X_orig, self.eps[0], self.lamda[0], self.K) if self.unbal else \
+                        self.OT_semidual_bal_tensor(tl.fold(self.U[0], 0, self.X_orig.shape), self.X_orig, self.eps[0], self.K)
+        return ot_term + ent_term
     def primal_obj(self, terms = False):
         # not implemented 
         return 0
     def forward(self):
         return self.dual_obj()
     def compute_primal_variable(self):
+        '''
+        Get factor matrix (the primal variable) at optimality.
+        '''
         x = self.U[self.k] @ self.S_A.T * float(self.k in self.optim_modes)
         l = [self.get_xi(j) for j in self.optim_modes if j != self.k]
         if len(l) > 0:
             x += torch.stack(l).sum(0)
         Z = (-1/self.rho[self.k])*x
+        a = torch.exp((-1/self.rho[self.k])*x)
         if self.norm is None:
-            return torch.exp((-1/self.rho[self.k])*x)
+            return a 
         elif self.norm == "col":
-            a = torch.exp((-1/self.rho[self.k])*x)
             return a/a.sum(0).reshape(1, -1)
         elif self.norm == "row":
-            a = torch.exp((-1/self.rho[self.k])*x)
             return (a.T/a.sum(1)).T
+        elif self.norm == "full":
+            return a/a.sum()
 #
 class CoreModel(OTModel):
-    def set_U(self, U):
-        self.U = torch.nn.ParameterList([torch.nn.Parameter(Variable(U[i], requires_grad = True)) for i in range(len(self.X_orig.shape))])
-    def __init__(self, X, C, A, rho, eps, lamda, optim_modes, ot_mode = "fiber", C_full = None, U_init = None, unbal = True, **kwargs):
+    '''
+    Subclass for core tensor subproblem
+    
+    X: data tensor
+    C: list of cost matrices (one for each mode)
+    A: list of factor matrices
+    rho: factor matrix entropy weights
+    eps: OT regularisation parameter
+    lamda: unbalanced OT parameter (only relevant if unbal = True)
+    optim_modes: modes along which to compute OT
+    ot_mode: "fiber", "slice", or "full"
+    U_init: initial dual potential to use (if None, U initialised as 0)
+    unbal: whether to use unbalanced transport
+    norm: None, "row", "col" or "full". How to (simplex)-normalise the factor matrix.
+    '''
+    def __init__(self, X, C, A, rho, eps, lamda, optim_modes, ot_mode = "fiber", U_init = None, unbal = True, norm = None, **kwargs):
         super(CoreModel, self).__init__(**kwargs)
-        self.unbal = unbal
         self.X_shape = X.shape
         self.X = [tl.unfold(X, i) for i in range(len(X.shape))] # all unfoldings
         self.X_orig = X # folded tensor
         self.alpha = [(self.X[i].sum(0) > 0)*1.0 for i in range(len(X.shape))]
         self.C = C
-        if C is not None:
-            self.K = [(-C[k]/eps[k]).exp() for k in range(len(C))] # Gibbs kernels for each mode
-        if C_full is not None:
-            self.C_full = C_full
-            self.K_full = (-C_full/eps[0]).exp()
+        self.K = [(-C[k]/eps[k]).exp() for k in range(len(C))] # Gibbs kernels for each mode
+        self.unbal = unbal
         self.eps = eps
         self.rho = rho
         self.lamda = lamda
         self.A = A
         self.optim_modes = optim_modes
         self.ot_mode = ot_mode
+        self.norm = norm
         if U_init is None:
             U = [torch.zeros(self.X[i].shape).to(self.device) for i in range(len(X.shape))]
         else:
             U = U_init
         self.set_U(U)
+    def set_U(self, U):
+        self.U = torch.nn.ParameterList([torch.nn.Parameter(Variable(U[i], requires_grad = True)) for i in range(len(self.X_orig.shape))])
     def get_omega(self, i):
         return tl.tenalg.multi_mode_dot(tl.fold(self.U[i], mode = i, shape = self.X_shape), [A.T for A in self.A])
     def dual_obj(self):
+        Z = (-1/self.rho[-1]) * sumstack([self.get_omega(i) for i in self.optim_modes])
+        if self.norm is None:
+            ent_term = self.rho[-1]*self.E_star(Z)
+        elif self.norm == "full":
+            ent_term = self.rho[-1]*self.E_star_simplex(Z.reshape(-1))
         if self.ot_mode == "fiber":
-            return torch.sum(torch.stack([self.H_star_unbal(self.U[i], self.X[i], self.eps[i], self.lamda[i], self.K[i], alpha = self.alpha[i]) for i in self.optim_modes])) + \
-                  self.rho[-1]*self.E_star_unbal((-1/self.rho[-1]) * sumstack([self.get_omega(i) for i in self.optim_modes]))
+            ot_term = sumstack([self.OT_semidual_unbal(self.U[i], self.X[i], self.eps[i], self.lamda[i], self.K[i], alpha = self.alpha[i]) for i in self.optim_modes])
         elif self.ot_mode == "slice":
-            return self.H_star_unbal(self.U[0].T, self.X[0].T, self.eps[0], self.lamda[0], self.K_full) + \
-                  self.rho[-1]*self.E_star_bal((-1/self.rho[-1]) * sumstack([self.get_omega(i) for i in self.optim_modes]))
+            ot_term = self.OT_semidual_unbal(self.U[0].T, self.X[0].T, self.eps[0], self.lamda[0], self.K[0]) \
+                    if self.unbal else self.OT_semidual_bal(self.U[0].T, self.X[0].T, self.eps[0], self.K[0])
+        elif self.ot_mode == "full":
+            ot_term = self.OT_semidual_unbal_tensor(tl.fold(self.U[0], 0, self.X_orig.shape), self.X_orig, self.eps[0], self.lamda[0], self.K) if self.unbal else \
+                        self.OT_semidual_bal_tensor(tl.fold(self.U[0], 0, self.X_orig.shape), self.X_orig, self.eps[0], self.K)
+        return ot_term + ent_term
     def forward(self):
         return self.dual_obj()
     def compute_primal_variable(self):
-        return torch.exp((-1/self.rho[-1])*sumstack([self.get_omega(i) for i in self.optim_modes]))
+        s = torch.exp((-1/self.rho[-1])*sumstack([self.get_omega(i) for i in self.optim_modes]))
+        if self.norm is None:
+            return s
+        elif self.norm == "full":
+            return s/s.sum()
     def primal_obj(self, terms = False):
         return 0
 
 def solve(model, lr = 1, tol = 0.01, max_iter = 100, print_inter = 10, check_iter = 10, mode = "lbfgs", retries = 4, factor = 2):
     def get_optimizer(model):
         if mode == "lbfgs":
-            optimizer = torch.optim.LBFGS(model.parameters(), lr = lr, history_size = 25, max_iter = 25, line_search_fn="strong_wolfe")
+            optimizer = torch.optim.LBFGS(model.parameters(), lr = lr, history_size = 10, max_iter = 10, line_search_fn="strong_wolfe")
         else:
             optimizer = torch.optim.Adam(model.parameters(), lr = lr)
         return optimizer
@@ -263,3 +362,4 @@ def solve(model, lr = 1, tol = 0.01, max_iter = 100, print_inter = 10, check_ite
                 U_prev = [u.clone() for u in model.U]
         if i % print_inter == 0 and ~got_nan:
             print("i = %d \t dual = %f" % (i, d))
+    return dual_prev
