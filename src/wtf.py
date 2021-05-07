@@ -299,8 +299,10 @@ def solve(model, lr = 1, tol = 0.01, max_iter = 100, print_inter = 10, check_ite
     def get_optimizer(model):
         if mode == "lbfgs":
             optimizer = torch.optim.LBFGS(model.parameters(), lr = lr, history_size = 10, max_iter = 10, line_search_fn="strong_wolfe")
-        else:
+        elif mode == "adam":
             optimizer = torch.optim.Adam(model.parameters(), lr = lr)
+        elif mode == "sgd":
+            optimizer = torch.optim.SGD(model.parameters(), lr = lr)
         return optimizer
     optimizer = get_optimizer(model)
     U_prev = model.U.clone()
