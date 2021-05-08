@@ -159,7 +159,7 @@ print("err_train = ", err_train, " err_test = ", err_test)
 classif["cp"] = {"err_train" : err_train, "err_test" : err_test}
 
 # classification using PCA (breaks the non-negativity constraint)
-pca = sklearn.decomposition.PCA(n_components = r[0])
+pca = sklearn.decomposition.PCA(n_components = r[0], svd_solver = 'full')
 X_train_pca = pca.fit_transform(tl.unfold(X_train, 0))
 X_test_pca = pca.transform(tl.unfold(X_test, 0))
 # clf_pca = svm.SVC()
