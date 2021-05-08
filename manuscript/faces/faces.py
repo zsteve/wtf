@@ -9,7 +9,7 @@ parser.add_argument("--split", metavar = "split", type = int, default = 5) # tra
 parser.add_argument("--srand", metavar = "srand", type = int, default = 0) # random seed 
 parser.add_argument("--r", metavar = "r", type = int, default = 10) # rank 
 parser.add_argument("--init", metavar = "init", type = str, default = "svd") # init 
-parser.add_argument("--lamda", metavar = "lamda", type = float, default = 25)
+parser.add_argument("--lamda", metavar = "lamda", type = float, default = 10)
 parser.add_argument("--rho0", metavar = "rho0", type = float, default = 0.005) 
 parser.add_argument("--eps", metavar = "eps", type = float, default = 1e-3)
 parser.add_argument("--lr", metavar = "lr", type = float, default = 1)
@@ -41,11 +41,16 @@ sys.path.insert(0, args.srcpath)
 import wtf
 
 # load Olivetti faces dataset
+# simple image scaling to (nR x nC) size
+def scale(im, nR, nC):
+    nR0 = len(im)     # source number of rows 
+    nC0 = len(im[0])  # source number of columns 
+    return np.array([[ im[int(nR0 * r / nR)][int(nC0 * c / nC)]  
+             for c in range(nC)] for r in range(nR)])
+
 data = sklearn.datasets.fetch_olivetti_faces()
-perm = np.argsort(data.target)
-data.target = data.target[perm]
-sizex, sizey = (64, 64)
-X = tl.tensor(np.array([wtf.normalise(i) for i in data.images]), dtype = tl_dtype)
+sizex, sizey = (32, 32)
+X = tl.tensor(np.array([wtf.normalise(scale(i, sizex, sizey)) for i in data.images]), dtype = tl_dtype)
 target = data.target
 
 # set random seed 
@@ -87,7 +92,7 @@ A[2] = A[2]/A[2].sum(0)
 
 dual_objs = [[], [], [], ] 
 
-max_iter, print_inter, check_iter, unbal = (100, 10, 10, True) 
+max_iter, print_inter, check_iter, unbal = (250, 10, 10, True) 
 mode = "lbfgs"
 for i in range(args.n_iter):
     print("Block iteration ", i)
