@@ -1,0 +1,176 @@
+Block iteration  0
+Mode 0
+i = 0 	 dual = 1.611196
+i = 10 	 dual = 1.590760
+Mode 1
+i = 0 	 dual = 1.648500
+i = 10 	 dual = 1.643635
+i = 20 	 dual = 1.640358
+i = 30 	 dual = 1.637989
+i = 40 	 dual = 1.635385
+i = 50 	 dual = 1.633151
+i = 60 	 dual = 1.631355
+i = 70 	 dual = 1.630037
+i = 80 	 dual = 1.628830
+i = 90 	 dual = 1.627699
+Block iteration  1
+Mode 0
+i = 0 	 dual = 1.617972
+i = 10 	 dual = 1.605933
+Mode 1
+i = 0 	 dual = 1.645568
+i = 10 	 dual = 1.635409
+i = 20 	 dual = 1.631514
+Block iteration  2
+Mode 0
+i = 0 	 dual = 1.665221
+i = 10 	 dual = 1.663282
+Mode 1
+i = 0 	 dual = 1.645735
+i = 10 	 dual = 1.636469
+i = 20 	 dual = 1.634627
+Block iteration  3
+Mode 0
+i = 0 	 dual = 1.669290
+i = 10 	 dual = 1.667963
+Mode 1
+i = 0 	 dual = 1.646011
+i = 10 	 dual = 1.638113
+i = 20 	 dual = 1.636119
+Block iteration  4
+Mode 0
+i = 0 	 dual = 1.670750
+i = 10 	 dual = 1.669666
+Mode 1
+i = 0 	 dual = 1.645842
+i = 10 	 dual = 1.638624
+i = 20 	 dual = 1.636820
+Block iteration  5
+Mode 0
+i = 0 	 dual = 1.671692
+Mode 1
+i = 0 	 dual = 1.645921
+i = 10 	 dual = 1.638060
+Block iteration  6
+Mode 0
+i = 0 	 dual = 1.672121
+Mode 1
+i = 0 	 dual = 1.645923
+i = 10 	 dual = 1.638662
+i = 20 	 dual = 1.637518
+Block iteration  7
+Mode 0
+i = 0 	 dual = 1.673055
+Mode 1
+i = 0 	 dual = 1.645901
+i = 10 	 dual = 1.638532
+Block iteration  8
+Mode 0
+i = 0 	 dual = 1.673491
+Mode 1
+i = 0 	 dual = 1.645827
+i = 10 	 dual = 1.638676
+Block iteration  9
+Mode 0
+i = 0 	 dual = 1.673994
+Mode 1
+i = 0 	 dual = 1.645804
+i = 10 	 dual = 1.638780
+Block iteration  10
+Mode 0
+i = 0 	 dual = 1.674364
+Mode 1
+i = 0 	 dual = 1.645805
+i = 10 	 dual = 1.638919
+Block iteration  11
+Mode 0
+i = 0 	 dual = 1.674726
+Mode 1
+i = 0 	 dual = 1.645816
+i = 10 	 dual = 1.638922
+Block iteration  12
+Mode 0
+i = 0 	 dual = 1.675083
+Mode 1
+i = 0 	 dual = 1.645828
+i = 10 	 dual = 1.639187
+Block iteration  13
+Mode 0
+i = 0 	 dual = 1.675310
+Mode 1
+i = 0 	 dual = 1.645812
+i = 10 	 dual = 1.639288
+Block iteration  14
+Mode 0
+i = 0 	 dual = 1.675612
+Mode 1
+i = 0 	 dual = 1.645777
+i = 10 	 dual = 1.639049
+Block iteration  15
+Mode 0
+i = 0 	 dual = 1.675825
+Mode 1
+i = 0 	 dual = 1.645814
+i = 10 	 dual = 1.639281
+Block iteration  16
+Mode 0
+i = 0 	 dual = 1.676098
+Mode 1
+i = 0 	 dual = 1.645832
+i = 10 	 dual = 1.639249
+Block iteration  17
+Mode 0
+i = 0 	 dual = 1.676302
+Mode 1
+i = 0 	 dual = 1.645876
+i = 10 	 dual = 1.639330
+Block iteration  18
+Mode 0
+i = 0 	 dual = 1.676498
+Mode 1
+i = 0 	 dual = 1.645938
+i = 10 	 dual = 1.639456
+Block iteration  19
+Mode 0
+i = 0 	 dual = 1.676779
+Mode 1
+i = 0 	 dual = 1.645977
+i = 10 	 dual = 1.639496
+Block iteration  20
+Mode 0
+i = 0 	 dual = 1.677006
+Mode 1
+i = 0 	 dual = 1.645993
+i = 10 	 dual = 1.639485
+Block iteration  21
+Mode 0
+i = 0 	 dual = 1.677172
+Mode 1
+i = 0 	 dual = 1.645980
+i = 10 	 dual = 1.639527
+Block iteration  22
+Mode 0
+i = 0 	 dual = 1.677143
+Mode 1
+i = 0 	 dual = 1.645987
+i = 10 	 dual = 1.639530
+Block iteration  23
+Mode 0
+i = 0 	 dual = 1.677409
+Mode 1
+i = 0 	 dual = 1.645970
+i = 10 	 dual = 1.639599
+Block iteration  24
+Mode 0
+i = 0 	 dual = 1.677365
+Mode 1
+i = 0 	 dual = 1.645894
+i = 10 	 dual = 1.639780
+i = 0 	 dual = 1.674607
+i = 10 	 dual = 1.673676
+Classification with WTF
+err_train =  0.0  err_test =  0.12
+Classification with CP
+err_train =  0.0  err_test =  0.315
+Classification with PCA
+err_train =  0.0  err_test =  0.14

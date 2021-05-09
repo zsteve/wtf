@@ -1,0 +1,776 @@
+Block iteration  0
+Mode 0
+i = 0 	 dual = 1.507662
+i = 10 	 dual = 1.360534
+Mode 1
+i = 0 	 dual = 1.610516
+i = 10 	 dual = 1.559877
+i = 20 	 dual = 1.521464
+i = 30 	 dual = 1.493530
+i = 40 	 dual = 1.472140
+i = 50 	 dual = 1.455810
+i = 60 	 dual = 1.443800
+i = 70 	 dual = 1.436213
+i = 80 	 dual = 1.431318
+i = 90 	 dual = 1.427992
+i = 100 	 dual = 1.425879
+i = 110 	 dual = 1.424370
+Mode 2
+i = 0 	 dual = 1.623404
+i = 10 	 dual = 1.590036
+i = 20 	 dual = 1.557499
+i = 30 	 dual = 1.530199
+i = 40 	 dual = 1.513138
+i = 50 	 dual = 1.499322
+i = 60 	 dual = 1.487752
+i = 70 	 dual = 1.477163
+i = 80 	 dual = 1.470245
+i = 90 	 dual = 1.464871
+i = 100 	 dual = 1.460865
+i = 110 	 dual = 1.457835
+i = 120 	 dual = 1.456096
+i = 130 	 dual = 1.454994
+Block iteration  1
+Mode 0
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 1
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 2
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Block iteration  2
+Mode 0
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 1
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 2
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Block iteration  3
+Mode 0
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 1
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 2
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Block iteration  4
+Mode 0
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 1
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 2
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Block iteration  5
+Mode 0
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 1
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 2
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Block iteration  6
+Mode 0
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 1
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 2
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Block iteration  7
+Mode 0
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 1
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 2
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Block iteration  8
+Mode 0
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 1
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 2
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Block iteration  9
+Mode 0
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 1
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 2
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Block iteration  10
+Mode 0
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 1
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 2
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Block iteration  11
+Mode 0
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 1
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 2
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Block iteration  12
+Mode 0
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 1
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 2
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Block iteration  13
+Mode 0
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 1
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 2
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Block iteration  14
+Mode 0
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 1
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 2
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Block iteration  15
+Mode 0
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 1
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 2
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Block iteration  16
+Mode 0
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 1
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 2
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Block iteration  17
+Mode 0
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 1
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 2
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Block iteration  18
+Mode 0
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 1
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 2
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Block iteration  19
+Mode 0
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 1
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 2
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Block iteration  20
+Mode 0
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 1
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 2
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Block iteration  21
+Mode 0
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 1
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 2
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Block iteration  22
+Mode 0
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 1
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 2
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Block iteration  23
+Mode 0
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 1
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 2
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Block iteration  24
+Mode 0
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 1
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
+Mode 2
+Warning: NaN encountered, new lr = 0.500000
+i = 0 	 dual = nan
+Warning: NaN encountered, new lr = 0.250000
+i = 10 	 dual = nan
+Warning: NaN encountered, new lr = 0.125000
+i = 20 	 dual = nan
+Warning: NaN encountered, new lr = 0.062500
+i = 30 	 dual = nan
+Error: exhausted retries
