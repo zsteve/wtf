@@ -13,4 +13,4 @@ module load gcc/9.1.0
 conda activate sdecouplings
 cd $PBS_O_WORKDIR
 SRAND=$PBS_ARRAY_INDEX
-python faces.py --srcpath /scratch/st-schieb-1/zsteve/wtf/src --n_iter 25 --outfile "output_$SRAND" --r 40 --srand $SRAND 
+python faces.py --srcpath /scratch/st-schieb-1/zsteve/wtf/src --n_iter 25 --outfile "output_$SRAND" --r 40 --srand $SRAND --tol 1e-4

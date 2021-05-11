@@ -15,7 +15,7 @@ parser.add_argument("--eps", metavar = "eps", type = float, default = 1e-3)
 parser.add_argument("--lr", metavar = "lr", type = float, default = 1)
 parser.add_argument("--tol", metavar = "tol", type = float, default = 1e-3)
 parser.add_argument("--n_iter", metavar = "n_iter", type = int, default = 25)
-parser.add_argument("--mode", metavar = "mode", type = str, default = "ntf")
+parser.add_argument("--mode", metavar = "mode", type = str, default = "wtf")
 parser.add_argument("--outfile", metavar = "outfile", type = str, default = "output")
 
 args = parser.parse_args()
