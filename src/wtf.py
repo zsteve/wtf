@@ -170,7 +170,7 @@ class FactorsModel(OTModel):
         self.C = C
         self.unbal = unbal
         self.norm = norm
-        self.K = [(-C[k]/eps[k]).exp() for k in range(len(C))] # Gibbs kernels for each mode
+        self.K = [(-C[k]/float(eps[k])).exp() for k in range(len(C))] # Gibbs kernels for each mode
         self.eps = eps
         self.rho = rho
         self.lamda = lamda
