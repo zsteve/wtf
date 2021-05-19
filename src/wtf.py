@@ -222,9 +222,9 @@ class FactorsModel(OTModel):
         Get factor matrix (the primal variable) at optimality.
         '''
         Z = (-1/self.rho[self.k]) * self.get_xi(self.k)
-        a = torch.exp(Z)
+        a = torch.exp(Z - Z.mean(0))
         if self.norm is None:
-            return a 
+            return a * (Z.mean(0)).exp()
         elif self.norm == "col":
             return a/a.sum(0).reshape(1, -1)
         elif self.norm == "row":
