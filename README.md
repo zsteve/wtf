@@ -1,10 +1,10 @@
 # wtf: Wasserstein Tensor Factorisation
 
-Non-negative matrix and tensor factorisations with a smoothed Wasserstein loss 
+A unified framework for non-negative matrix and tensor factorisations with a smoothed Wasserstein loss
 
 ![pooh bear meme](images/wtf.jpg)
 
-This repository contains a basic implementation of the method described in the article "Non-negative matrix and tensor factorisations with a smoothed Wasserstein loss".
+This repository contains a basic implementation of the method described in the article "A unified framework for non-negative matrix and tensor factorisations with a smoothed Wasserstein loss".
 
 ## Requirements
  - PyTorch
@@ -43,5 +43,5 @@ Thanks to Shoaib Bin Masud (Tufts) and Anna Konstorum (Yale) for bringing this d
  - If you find this work relevant to your research project, please cite the [preprint](https://arxiv.org/abs/2104.01708)
 
 ```
-Zhang, S. Non-negative matrix and tensor factorisations with a smoothed Wasserstein loss, arXiv preprint arXiv:2104.01708, 2021
+Zhang, S. A unified framework for non-negative matrix and tensor factorisations with a smoothed Wasserstein loss, arXiv preprint arXiv:2104.01708, 2021
 ```
